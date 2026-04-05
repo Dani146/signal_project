@@ -4,6 +4,7 @@ The Cardio Data Simulator is a Java-based application designed to simulate real-
 
 ## Project Members
 - Student ID: 6434099
+- Student ID: 6413559
 
 ## Features
 
