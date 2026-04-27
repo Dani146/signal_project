@@ -7,17 +7,29 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * A concrete implementation of {@link OutputStrategy} for outputting to a file.
+ */
 public class FileOutputStrategy implements OutputStrategy {
 
     private String baseDirectory;
 
     public final ConcurrentHashMap<String, String> fileMap = new ConcurrentHashMap<>();
 
+    /**
+     * Creates an instance of FileOutputStrategy.
+     * 
+     * @param baseDirectory base directory for file outputs
+     */
     public FileOutputStrategy(String baseDirectory) {
 
         this.baseDirectory = baseDirectory;
     }
 
+    /**
+     * Outputs the given data to a file. Creates a separate file for every distinct {@code label} to
+     * write the data to.
+     */
     @Override
     public void output(int patientId, long timestamp, String label, String data) {
         try {
