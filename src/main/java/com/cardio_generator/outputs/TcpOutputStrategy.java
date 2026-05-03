@@ -5,13 +5,19 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Executors;
-
+/**
+ * Sends patient data over a TCP connection using a server socket.
+*/
 public class TcpOutputStrategy implements OutputStrategy {
 
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private PrintWriter out;
-
+    /**
+     * Creates the instance of TcpOutputStrategy and starts a server socket
+     * that listens for incoming client connections
+     * @param port IP port for communication
+     */
     public TcpOutputStrategy(int port) {
         try {
             serverSocket = new ServerSocket(port);
@@ -31,7 +37,13 @@ public class TcpOutputStrategy implements OutputStrategy {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Sends patient data as a CSV message over TCP connection
+     * @param patientId ID of patients
+     * @param timestamp timestamp of the record
+     * @param label labels data category used for file names
+     * @param data actual data to be writen
+     */
     @Override
     public void output(int patientId, long timestamp, String label, String data) {
         if (out != null) {
