@@ -3,11 +3,18 @@ package com.cardio_generator.generators;
 import java.util.Random;
 
 import com.cardio_generator.outputs.OutputStrategy;
-
+    /**
+     * Simulates the oxygen saturation values for each new patient
+     * Generates values that are in realistic healthy range
+     */
 public class BloodSaturationDataGenerator implements PatientDataGenerator {
     private static final Random random = new Random();
     private int[] lastSaturationValues;
 
+    /**
+     * creates the instance of BloodSaturationDataGenerator
+     * @param patientCount number of patients to simulate
+     */
     public BloodSaturationDataGenerator(int patientCount) {
         lastSaturationValues = new int[patientCount + 1];
 
@@ -16,7 +23,13 @@ public class BloodSaturationDataGenerator implements PatientDataGenerator {
             lastSaturationValues[i] = 95 + random.nextInt(6); // Initializes with a value between 95 and 100
         }
     }
-
+    /**
+     * creates the actual simulation of the blood satruration for each patient
+     * it makes small random fluctuations to the previous value
+     * Ensures that the value stays within the healthy range (90-100)
+     * @param patientId ID of a patient
+     * @param outputStrategy prints all the data
+     */
     @Override
     public void generate(int patientId, OutputStrategy outputStrategy) {
         try {
